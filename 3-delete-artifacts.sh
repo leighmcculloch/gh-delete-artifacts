@@ -8,7 +8,7 @@
 set -e
 
 FILE="$1"
-REPO="$(jq -r '.artifacts[0].url | split("/")[4] + "/" + split("/")[5]' artifacts.json)"
+REPO="$(jq -s -r '[.[].artifacts[0].url | split("/")[4] + "/" + split("/")[5]][0]' artifacts.json)"
 
 # Get the starting index from the first argument, default to 0
 START_INDEX=${2:-0}
